@@ -1,5 +1,5 @@
 DOCKER_ORG := ritualnetwork
-EXAMPLE_NAME := chasmnet
+EXAMPLE_NAME := weave-chasm
 TAG := $(DOCKER_ORG)/example-$(EXAMPLE_NAME)-infernet:latest
 
 .phony: build run build-multiplatform try-prompt
