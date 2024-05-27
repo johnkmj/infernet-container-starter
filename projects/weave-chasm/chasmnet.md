@@ -1,10 +1,10 @@
-# Running OpenAI's GPT-4 on Infernet
+# Running Chasm's Weave on Infernet
 
-In this tutorial we are going to integrate [OpenAI's GPT-4](https://openai.com/gpt-4) into infernet. We will:
+In this tutorial we are going to integrate [Chasm's Weave](https://weave.Chasm.net/) into infernet. We will:
 
-1. Obtain an API key from OpenAI
-2. Configure the `gpt4` service, build & deploy it with Infernet
-3. Make a web-2 request by directly prompting the [gpt4 service](./container)
+1. Obtain an API key from Chasm
+2. Configure the `chasmnet` service, build & deploy it with Infernet
+3. Make a web-2 request by directly prompting the [Weave service](./container)
 4. Make a web-3 request by integrating a sample [`PromptsGPT.sol`](./contracts/src/PromptsGPT.sol) smart contract. This
 contract will make a request to Infernet with their prompt, and receive the result of the request.
 
@@ -15,15 +15,15 @@ For this tutorial you'll need to have the following installed.
 1. [Docker](https://docs.docker.com/engine/install/)
 2. [Foundry](https://book.getfoundry.sh/getting-started/installation)
 
-### Get an API key from OpenAI
+### Get an API key from Chasm
 
-First, you'll need to get an API key from OpenAI. You can do this by making
-an [OpenAI](https://openai.com/) account.
-After signing in, head over to [their platform](https://platform.openai.com/api-keys) to
+First, you'll need to get an API key from Chasm. You can do this by making
+an [Chasm](https://Chasm.net/) account.
+After signing in, head over to [their platform](https://weave.Chasm.net/) to
 make an API key.
 
 > [!NOTE]
-> You will need a paid account to use the GPT-4 API.
+> You will need a paid account to use the Weave API.
 
 ### Ensure `docker` & `foundry` exist
 
@@ -48,7 +48,7 @@ forge --version
 ### Clone the starter repository
 Just like our other examples, we're going to clone this repository.
 All of the code and instructions for this tutorial can be found in the
-[`projects/gpt4`](https://github.com/ritual-net/infernet-container-starter/tree/main/projects/gpt4)
+[`projects/weave-chasm`](https://github.com/ritual-net/infernet-container-starter/tree/main/projects/weave-chasm)
 directory of the repository.
 
 ```bash copy
@@ -58,37 +58,37 @@ git clone --recurse-submodules https://github.com/ritual-net/infernet-container-
 cd infernet-container-starter
 ```
 
-### Configure the `gpt4` container
+### Configure the `weave-chasm` container
 
 #### Configure API key in `config.json`
-This is where we'll use the API key we obtained from OpenAI.
+This is where we'll use the API key we obtained from Chasm.
 
 ```bash
-cd projects/gpt4/container
+cd projects/weave-chasm/container
 cp config.sample.json config.json
 ```
 
-In the `containers` field, you will see the following. Replace `your-openai-key` with your OpenAI API key.
+In the `containers` field, you will see the following. Replace `your-Chasm-key` with your Chasm API key.
 
 ```json
 "containers": [
     {
         // etc. etc.
         "env": {
-            "OPENAI_API_KEY": "your-openai-key" // replace with your OpenAI API key
+            "CHASMNET_API_KEY": "your-Chasm-key" // replace with your Chasm API key
         }
     }
 ],
 ```
 
-### Build the `gpt4` container
+### Build the `chasmnet` container
 
 First, navigate back to the root of the repository. Then simply run the following command to build the `gpt4`
 container:
 
 ```bash copy
 cd ../../..
-make build-container project=gpt4
+make build-container project=chasmnet
 ```
 
 ### Deploy infernet node locally
@@ -97,7 +97,7 @@ Much like our [hello world](../hello-world/hello-world.md) project, deploying th
 simple as running:
 
 ```bash copy
-make deploy-container project=gpt4
+make deploy-container project=chasmnet
 ```
 
 ## Making a Web2 Request
