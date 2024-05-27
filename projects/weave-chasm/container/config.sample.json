@@ -25,8 +25,8 @@
   "forward_stats": true,
   "containers": [
     {
-      "id": "chasmnet",
-      "image": "ritualnetwork/example-chasmnet-infernet:latest",
+      "id": "weave-chasm",
+      "image": "ritualnetwork/example-weave-chasm-infernet:latest",
       "external": true,
       "port": "3000",
       "allowed_delegate_addresses": [],

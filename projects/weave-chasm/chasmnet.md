@@ -103,31 +103,22 @@ make deploy-container project=weave-chasm
 ## Making a Web2 Request
 
 From here, you can directly make a request to the infernet node:
-
 ```bash
-curl -X POST http://127.0.0.1:4000/api/jobs \
-     -H "Content-Type: application/json" \
-     -d '{"containers":["weave-chasm"], "data": {"endpoint": "prompt2",  "body": "{"input": {}}"}}'
-
-curl -X POST http://127.0.0.1:4000/api/jobs \
-     -H "Content-Type: application/json" \
-     -d '{"containers":["weave-chasm"], "data": {"endpoint": "prompt", "endpoint_id": "9395",  "body": "{\\"input\\": {}}"}}'
-# {"id":"cab6eea8-8b1e-4144-9a70-f905c5ef375b"}
+curl -X POST http://127.0.0.1:4000/api/jobs -H "Content-Type: application/json" -d '{"containers":["weave-chasm"], "data": {"endpoint": "prompt", "body": {"input": {}}}}'
+# {"id":"68544d05-e1b2-415f-a9ac-4590057de1c8"}
 ```c
 
 
 If you have `jq` installed, you can pipe the output of the last command to a file:
 
 ```bash copy
-curl -X POST http://127.0.0.1:4000/api/jobs \
-     -H "Content-Type: application/json" \
-     -d '{"containers":["gpt4"], "data": {"prompt": "Hello, can shrimp actually fry rice?"}}' | jq -r ".id" > last-job.uuid
+curl -X POST http://127.0.0.1:4000/api/jobs -H "Content-Type: application/json" -d '{"containers":["weave-chasm"], "data": {"endpoint": "prompt", "body": {"input": {}}}}' | jq -r ".id" > last-job.uuid
 ```
 
 You can then check the status of the job by running:
 
 ```bash copy
-curl -X GET http://127.0.0.1:4000/api/jobs\?id\=cab6eea8-8b1e-4144-9a70-f905c5ef375b
+curl -X GET http://127.0.0.1:4000/api/jobs\?id\=68544d05-e1b2-415f-a9ac-4590057de1c8
 # response [{"id":"07026571-edc8-42ab-b38c-6b3cf19971b6","result":{"container":"gpt4","output":{"message":"No, shrimps cannot fry rice by themselves. However, in culinary terms, shrimp fried rice is a popular dish in which cooked shrimp are added to fried rice along with other ingredients. Cooks or chefs prepare it by frying the rice and shrimps together usually in a wok or frying pan."}},"status":"success"}]
 ```
 
