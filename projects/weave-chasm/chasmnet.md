@@ -107,9 +107,14 @@ From here, you can directly make a request to the infernet node:
 ```bash
 curl -X POST http://127.0.0.1:4000/api/jobs \
      -H "Content-Type: application/json" \
-     -d '{"containers":["gpt4"], "data": {"prompt": "Hello, can shrimp actually fry rice?"}}'
+     -d '{"containers":["weave-chasm"], "data": {"endpoint": "prompt2",  "body": "{"input": {}}"}}'
+
+curl -X POST http://127.0.0.1:4000/api/jobs \
+     -H "Content-Type: application/json" \
+     -d '{"containers":["weave-chasm"], "data": {"endpoint": "prompt", "endpoint_id": "9395",  "body": "{\\"input\\": {}}"}}'
 # {"id":"cab6eea8-8b1e-4144-9a70-f905c5ef375b"}
-```
+```c
+
 
 If you have `jq` installed, you can pipe the output of the last command to a file:
 
