@@ -81,14 +81,14 @@ In the `containers` field, you will see the following. Replace `your-Chasm-key` 
 ],
 ```
 
-### Build the `chasmnet` container
+### Build the `weave-chasm` container
 
 First, navigate back to the root of the repository. Then simply run the following command to build the `gpt4`
 container:
 
 ```bash copy
 cd ../../..
-make build-container project=chasmnet
+make build-container project=weave-chasm
 ```
 
 ### Deploy infernet node locally
@@ -97,7 +97,7 @@ Much like our [hello world](../hello-world/hello-world.md) project, deploying th
 simple as running:
 
 ```bash copy
-make deploy-container project=chasmnet
+make deploy-container project=weave-chasm
 ```
 
 ## Making a Web2 Request
