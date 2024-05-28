@@ -104,7 +104,7 @@ make deploy-container project=weave-chasm
 
 From here, you can directly make a request to the infernet node:
 ```bash
-curl -X POST http://127.0.0.1:4000/api/jobs -H "Content-Type: application/json" -d '{"containers":["weave-chasm"], "data": {"endpoint": "prompt", "body": {"input": {}}}}'
+curl -X POST http://127.0.0.1:4000/api/jobs -H "Content-Type: application/json" -d '{"containers":["weave-chasm"], "data": {"endpoint": "prompt", "endpoint_id": "9584", "body": {"input": {"test": "apple"}}}}'
 # {"id":"68544d05-e1b2-415f-a9ac-4590057de1c8"}
 ```c
 

@@ -49,15 +49,15 @@ def create_app() -> Quart:
         if cast(dict[str, Any], infernet_input.data).get("endpoint") == "prompt":
             result: dict[str, Any] = prompt_workflow.inference(
                 {
-                    "endpoint_id": endpoint_id,
-                    "body": body,
+                    "model": "",
+                    "params": body,
                 }
             )
         else:
             result: dict[str, Any] = workflows_workflow.inference(
                 {
-                    "endpoint_id": endpoint_id,
-                    "body": body,
+                    "model": "",
+                    "params": body,
                 }
             )
 
