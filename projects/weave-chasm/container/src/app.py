@@ -36,14 +36,13 @@ def create_app() -> Quart:
         infernet_input: InfernetInput = InfernetInput(**req_data)
 
         if infernet_input.source == InfernetInputSource.OFFCHAIN:
-            endpoint_id = cast(dict[str, Any], infernet_input.data).get("endpoint_id")
             body = cast(dict[str, Any], infernet_input.data).get("body")
         else:
             # On-chain requests are sent as a generalized hex-string which we will
             # decode to the appropriate format.
             # Note: haven't tested to see the input hex yet.
-            (endpoint_id, body) = decode(
-                ["string", "string"], bytes.fromhex(cast(str, infernet_input.data))
+            (body,) = decode(
+                ["string"], bytes.fromhex(cast(str, infernet_input.data))
             )
 
         if cast(dict[str, Any], infernet_input.data).get("endpoint") == "prompt":
