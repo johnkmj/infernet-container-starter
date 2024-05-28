@@ -12,10 +12,10 @@ log = logging.getLogger(__name__)
 def create_app() -> Quart:
     app = Quart(__name__)
 
-    prompt_workflow = CSSInferenceWorkflow(provider="CHASMNET", endpoint="prompt")
+    prompts_workflow = CSSInferenceWorkflow(provider="CHASMNET", endpoint="prompts")
     workflows_workflow = CSSInferenceWorkflow(provider="CHASMNET", endpoint="workflows")
 
-    prompt_workflow.setup()
+    prompts_workflow.setup()
     workflows_workflow.setup()
 
     @app.route("/")
@@ -45,8 +45,8 @@ def create_app() -> Quart:
                 ["string"], bytes.fromhex(cast(str, infernet_input.data))
             )
 
-        if cast(dict[str, Any], infernet_input.data).get("endpoint") == "prompt":
-            result: dict[str, Any] = prompt_workflow.inference(
+        if cast(dict[str, Any], infernet_input.data).get("endpoint") == "prompts":
+            result: dict[str, Any] = prompts_workflow.inference(
                 {
                     "model": "",
                     "params": body,
