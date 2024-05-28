@@ -6,7 +6,7 @@ TAG := $(DOCKER_ORG)/example-$(EXAMPLE_NAME)-infernet:latest
 
 build:
 	mkdir -p root-config
-	@docker build -t $(TAG) .
+	@docker build --no-cache -t $(TAG) .
 
 run: build
 	@docker run --env-file $(EXAMPLE_NAME).env -p 3000:3000 $(TAG)
