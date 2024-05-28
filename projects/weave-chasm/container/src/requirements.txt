@@ -1,5 +1,5 @@
 quart==0.19.4
-infernet_ml @ git+https://github.com/johnkmj/infernet-ml/
+infernet_ml @ git+https://github.com/johnkmj/infernet-ml/@Ritual-Chasm-Implementation
 PyArweave @ git+https://github.com/ritual-net/pyarweave.git
 web3==6.15.0
 retry2==0.9.5
