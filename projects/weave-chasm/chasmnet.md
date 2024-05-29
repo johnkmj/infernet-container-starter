@@ -155,7 +155,7 @@ Now let's bring this service onchain! First we'll have to deploy the contracts.
 The [contracts](contracts)
 directory contains a simple foundry project with a simple contract called `PromptsGpt`.
 This contract exposes a single
-function `function promptGPT(string calldata prompt)`. Using this function you'll be
+function `function promptGPT(string calldata body)`. Using this function you'll be
 able to make an infernet request.
 
 **Anvil Logs**: First, it's useful to look at the logs of the anvil node to see what's
@@ -180,7 +180,7 @@ using an env var named
 `prompt`:
 
 ```bash copy
-make call-contract project=weave-chasm prompt="Can shrimps actually fry rice"
+make call-contract project=weave-chasm body='{"endpoint":"prompts","endpoint_id":"9395","input":{}}'
 ```
 
 On your anvil logs, you should see something like this:
