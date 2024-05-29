@@ -153,9 +153,9 @@ curl -X GET "http://127.0.0.1:4000/api/jobs?id=$(cat last-request.uuid)" | jq .
 
 Now let's bring this service onchain! First we'll have to deploy the contracts.
 The [contracts](contracts)
-directory contains a simple foundry project with a simple contract called `PromptsGpt`.
+directory contains a simple foundry project with a simple contract called `PromptsWeave`.
 This contract exposes a single
-function `function promptGPT(string calldata prompt)`. Using this function you'll be
+function `function promptWeave(string calldata body)`. Using this function you'll be
 able to make an infernet request.
 
 **Anvil Logs**: First, it's useful to look at the logs of the anvil node to see what's

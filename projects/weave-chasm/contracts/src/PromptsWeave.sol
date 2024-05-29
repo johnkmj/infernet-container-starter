@@ -16,7 +16,7 @@ contract PromptsWeave is CallbackConsumer {
 
     function promptWeave(string calldata body) public {
         _requestCompute(
-            "chasmnet",
+            "weave-chasm",
             abi.encode(body),
             20 gwei,
             1_000_000,
