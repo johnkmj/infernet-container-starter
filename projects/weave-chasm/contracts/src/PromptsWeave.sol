@@ -14,10 +14,10 @@ contract PromptsWeave is CallbackConsumer {
     "|_|  \\_\\_____|  |_|   \\____/_/    \\_\\______|   \n\n";
     constructor(address coordinator) CallbackConsumer(coordinator) {}
 
-    function promptWeave(string calldata prompt) public {
+    function promptWeave(string calldata body) public {
         _requestCompute(
             "chasmnet",
-            abi.encode(prompt),
+            abi.encode(body),
             20 gwei,
             1_000_000,
             1
