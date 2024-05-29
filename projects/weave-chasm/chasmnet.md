@@ -104,22 +104,30 @@ make deploy-container project=weave-chasm
 
 From here, you can directly make a request to the infernet node:
 ```bash
-curl -X POST http://127.0.0.1:4000/api/jobs -H "Content-Type: application/json" -d '{"containers":["weave-chasm"], "data": {"endpoint": "prompt", "endpoint_id": "9584", "body": {"input": {"test": "apple"}}}}'
-# {"id":"68544d05-e1b2-415f-a9ac-4590057de1c8"}
+# prompts with no input
+curl -X POST http://127.0.0.1:4000/api/jobs -H "Content-Type: application/json" -d '{"containers":["weave-chasm"],"data":{"body":{"endpoint":"prompts","endpoint_id":"9395","input":{}}}}'
+# {"id":"7a4ff474-e9ca-48b5-acb3-7c441e60a638"}
+```c
+
+
+```bash
+# prompts with input
+curl -X POST http://127.0.0.1:4000/api/jobs -H "Content-Type: application/json" -d '{"containers":["weave-chasm"],"data":{"body":{"endpoint":"prompts","endpoint_id":"9793","input":{"food": "apples"}}}}'
+# {"id":"5eb3f76c-4da2-4b33-a4ca-9201171956be"}
 ```c
 
 
 If you have `jq` installed, you can pipe the output of the last command to a file:
 
 ```bash copy
-curl -X POST http://127.0.0.1:4000/api/jobs -H "Content-Type: application/json" -d '{"containers":["weave-chasm"], "data": {"endpoint": "prompt", "body": {"input": {}}}}' | jq -r ".id" > last-job.uuid
+curl -X POST http://127.0.0.1:4000/api/jobs -H "Content-Type: application/json" -d '{"containers":["weave-chasm"],"data":{"body":{"endpoint":"prompts","endpoint_id":"9395","input":{}}}}' | jq -r ".id" > last-job.uuid
 ```
 
 You can then check the status of the job by running:
 
 ```bash copy
-curl -X GET http://127.0.0.1:4000/api/jobs\?id\=68544d05-e1b2-415f-a9ac-4590057de1c8
-# response [{"id":"07026571-edc8-42ab-b38c-6b3cf19971b6","result":{"container":"gpt4","output":{"message":"No, shrimps cannot fry rice by themselves. However, in culinary terms, shrimp fried rice is a popular dish in which cooked shrimp are added to fried rice along with other ingredients. Cooks or chefs prepare it by frying the rice and shrimps together usually in a wok or frying pan."}},"status":"success"}]
+curl -X GET http://127.0.0.1:4000/api/jobs\?id\=7a4ff474-e9ca-48b5-acb3-7c441e60a638
+# response [{"id":"5eb3f76c-4da2-4b33-a4ca-9201171956be","result":{"container":"weave-chasm","output":{"message":"Food is any substance consumed to provide nutritional support for the body. It is usually of plant or animal origin and contains essential nutrients such as carbohydrates, fats, proteins, vitamins, and minerals. Food serves as fuel for the body, providing energy and supporting various bodily functions. Additionally, food can also be enjoyed for its taste, texture, and cultural significance."}},"status":"success"}]
 ```
 
 And if you have `jq` installed and piped the last output to a file, you can instead run:
@@ -128,16 +136,16 @@ And if you have `jq` installed and piped the last output to a file, you can inst
 curl -X GET "http://127.0.0.1:4000/api/jobs?id=$(cat last-request.uuid)" | jq .
 # returns something like:
 [
-  {
-    "id": "1b50e85b-2295-44eb-9c85-40ae5331bd14",
-    "result": {
-      "container": "gpt4",
-      "output": {
-        "output": "Yes, shrimp can be used to make fried rice. In many Asian cuisines, shrimp is a popular ingredient in fried rice dishes. The shrimp adds flavor and protein to the dish, and can be cooked along with the rice and other ingredients such as vegetables, eggs, and seasonings."
-      }
-    },
-    "status": "success"
-  }
+    {
+        "id": "5eb3f76c-4da2-4b33-a4ca-9201171956be",
+        "result": {
+            "container": "weave-chasm",
+            "output": {
+                "message": "Food is any substance consumed to provide nutritional support for the body. It is usually of plant or animal origin and contains essential nutrients such as carbohydrates, fats, proteins, vitamins, and minerals. Food serves as fuel for the body, providing energy and supporting various bodily functions. Additionally, food can also be enjoyed for its taste, texture, and cultural significance."
+            }
+        },
+        "status": "success"
+    }
 ]
 ```
 
@@ -157,7 +165,7 @@ going on. In a new terminal, run
 **Deploying the contracts**: In another terminal, run the following command:
 
 ```bash
-make deploy-contracts project=gpt4
+make deploy-contracts project=weave-chasm
 ```
 
 ### Calling the contract
@@ -169,7 +177,7 @@ using an env var named
 `prompt`:
 
 ```bash copy
-make call-contract project=gpt4 prompt="Can shrimps actually fry rice"
+make call-contract project=weave-chasm prompt="Can shrimps actually fry rice"
 ```
 
 On your anvil logs, you should see something like this:

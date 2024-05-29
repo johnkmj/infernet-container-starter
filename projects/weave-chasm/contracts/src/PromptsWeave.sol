@@ -4,7 +4,7 @@ pragma solidity ^0.8.13;
 import {console2} from "forge-std/console2.sol";
 import {CallbackConsumer} from "infernet-sdk/consumer/Callback.sol";
 
-contract PromptsGPT is CallbackConsumer {
+contract PromptsWeave is CallbackConsumer {
     string private EXTREMELY_COOL_BANNER = "\n\n"
     "_____  _____ _______ _    _         _                 \n"
     "|  __ \\|_   _|__   __| |  | |  /\\   | |             \n"
@@ -14,7 +14,7 @@ contract PromptsGPT is CallbackConsumer {
     "|_|  \\_\\_____|  |_|   \\____/_/    \\_\\______|   \n\n";
     constructor(address coordinator) CallbackConsumer(coordinator) {}
 
-    function promptGPT(string calldata prompt) public {
+    function promptWeave(string calldata prompt) public {
         _requestCompute(
             "chasmnet",
             abi.encode(prompt),
