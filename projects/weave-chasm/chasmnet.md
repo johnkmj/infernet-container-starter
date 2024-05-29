@@ -159,8 +159,11 @@ function `function promptGPT(string calldata prompt)`. Using this function you'l
 able to make an infernet request.
 
 **Anvil Logs**: First, it's useful to look at the logs of the anvil node to see what's
-going on. In a new terminal, run
-`docker logs -f anvil-node`.
+going on. In a new terminal, run `docker logs -f anvil-node`.
+If there's installation issues, run the following in the `infernet-container-starter` folder to ensure the needed libraries are installed.
+```bash
+cd projects/weave-chasm/contracts && forge install --no-commit foundry-rs/forge-std && forge install --no-commit ritual-net/infernet-sdk && cd ../../../
+```
 
 **Deploying the contracts**: In another terminal, run the following command:
 

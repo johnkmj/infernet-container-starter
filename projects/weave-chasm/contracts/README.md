@@ -17,7 +17,7 @@ make deploy
 ## Prompting
 
 The [`CallContract.s.sol`](./script/CallContract.s.sol) calls
-the [`promptGPT`](./src/PromptsGPT.sol#L10) function.
+the [`promptWeave`](./src/PromptsGPT.sol#L10) function.
 The [Makefile](./Makefile) in this project contains a utility call target. You'll need
 to pass in the prompt as an
 env var.

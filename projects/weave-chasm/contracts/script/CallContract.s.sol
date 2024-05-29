@@ -12,7 +12,7 @@ contract CallContract is Script {
 
         PromptsWeave promptsWeave = PromptsWeave(0x663F3ad617193148711d28f5334eE4Ed07016602);
 
-        promptsWeave.promptWeave(vm.envString("prompt"));
+        promptsWeave.promptWeave(vm.envString("body"));
 
         vm.stopBroadcast();
     }
